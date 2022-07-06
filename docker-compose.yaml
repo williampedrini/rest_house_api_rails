@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  database:
+    image: postgres:9.6
+    container_name: database
+    environment:
+      POSTGRES_USER: rest_house
+      POSTGRES_PASSWORD: rest_house
+      POSTGRES_DB: rest_house
+    mem_limit: 200M
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
